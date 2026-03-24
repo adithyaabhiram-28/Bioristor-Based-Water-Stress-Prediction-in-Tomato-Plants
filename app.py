@@ -250,8 +250,16 @@ div[data-testid="stSlider"] label {
   text-transform: uppercase !important;
   letter-spacing: 0.5px !important;
 }
-div[data-testid="stSlider"] > div > div > div > div {
-  background: var(--green) !important;
+
+/* smooth look */
+div[data-testid="stSlider"] {
+  padding-top: 6px;
+}
+
+/* value text color */
+div[data-testid="stSlider"] span {
+  color: #ef4444 !important;
+  font-weight: 600;
 }
 
 /* file uploader */
@@ -569,23 +577,19 @@ with body:
         )
 
         c1, c2, c3, c4 = st.columns(4)
-        with c1: rds       = st.slider("Rds",       0.0, 1.0,  0.80, 0.01)
-        with c2: delta_igs = st.slider("Delta_Igs", 0.0, 1.0,  0.75, 0.01)
-        with c3: tds_v     = st.slider("tds",       0.0, 30.0, 12.0, 0.1)
-        with c4: tgs_v     = st.slider("tgs",       0.0, 30.0, 15.0, 0.1)
+        with c1: rds       = st.slider("Rds",       0.0, 1.0,  0.80, step=0.05)
+        with c2: delta_igs = st.slider("Delta_Igs", 0.0, 1.0,  0.75, step=0.05)
+        with c3: tds_v     = st.slider("tds",       0.0, 30.0, 12.0, step=0.5)
+        with c4: tgs_v     = st.slider("tgs",       0.0, 30.0, 15.0, step=0.5)
 
         st.markdown("<div style='height:12px'></div>", unsafe_allow_html=True)
 
-        b1, b2, _ = st.columns([1.2, 1.2, 4])
+        b1, _, _ = st.columns([1.2, 1.2, 4])
+
         with b1:
             st.markdown('<div class="btn-primary">', unsafe_allow_html=True)
             do_predict = st.button("✨  Predict", use_container_width=True)
             st.markdown("</div>", unsafe_allow_html=True)
-        with b2:
-            if st.button("🧪  Fill sample", use_container_width=True):
-                s = sample_df().iloc[0].to_dict()
-                st.session_state["_sf"] = s
-                st.rerun()
 
         if "_sf" in st.session_state:
             s = st.session_state.pop("_sf")

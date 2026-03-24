@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
 # Bioristor-Based-Water-Stress-Prediction-in-Tomato-Plants
-=======
->>>>>>> 82d39e0
+
 # Tomato water-stress classification + forecasting (sensor data)
 
 This project implements:
@@ -66,8 +62,3 @@ Saved into `outputs/`:
 - `classification/` metrics + confusion matrices
 - `forecasting/` training curves + confusion matrix (24h ahead)
 - `irrigation/` simple “irrigate / no-irrigate” decisions
-
-<<<<<<< HEAD
-=======
->>>>>>> c2f8888 (Added full tomato stress detection project)
->>>>>>> 82d39e0

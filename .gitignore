@@ -3,3 +3,6 @@ __pycache__/
 *.pkl 
 *.mp4 
 *.pkl 
+*.mp4 
+*.pkl 
+data/ 

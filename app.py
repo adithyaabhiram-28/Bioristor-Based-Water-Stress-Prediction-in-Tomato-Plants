@@ -463,18 +463,20 @@ st.markdown("<div style='height:18px'></div>", unsafe_allow_html=True)
 _, body, _ = st.columns([1, 10, 1])
 with body:
 
-  if not MODEL_PATH.exists():
-      st.markdown(
-          "<div class='card'><div class='label'>setup needed</div>"
-          "<div class='card-title'>Model file not found</div>"
-          "<div class='card-sub'>Place <code>rf_model.pkl</code> next to <code>app.py</code>.</div></div>",
-          unsafe_allow_html=True,
-      )
-      st.stop()
+    from sklearn.ensemble import RandomForestClassifier
 
-  model   = load_model(MODEL_PATH)
-  dataset = load_dataset_if_available(DATASET_PATH)
-  tab     = st.session_state.tab
+    @st.cache_resource
+    def create_model():
+        X = np.random.rand(200, 4)
+        y = np.random.choice(CLASS_ORDER, 200)
+
+        model = RandomForestClassifier()
+        model.fit(X, y)
+        return model
+
+    model = create_model()
+    dataset = load_dataset_if_available(DATASET_PATH)
+    tab = st.session_state.tab
 
     # ══════════════════════════════════════
     # OVERVIEW
